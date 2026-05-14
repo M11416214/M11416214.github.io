@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單車制霸地圖：台灣四極點訓練計劃全攻略！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#FF7EB3',
+                        'secondary': '#8E5CF7',
+                        'accent': '#FFD93D',
+                        'soft-bg': '#FFF5F7',
+                        'cute-blue': '#A5D8FF',
+                        'card-bg': 'rgba(255, 255, 255, 0.85)',
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                        body: ['Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #FFF5F7 0%, #F0F4FF 100%);
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 126, 179, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FF7EB3 0%, #8E5CF7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.4;
+        }
+        .scrolled-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .scrolled-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .cycling-man {
+            font-size: 3rem;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+        .marker-highlight {
+            background: linear-gradient(120deg, rgba(255, 217, 61, 0.4) 0%, rgba(255, 217, 61, 0.4) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 80%;
+        }
+    </style>
+</head>
+<body class="font-body text-slate-800 leading-relaxed">
+
+    <!-- Decorative Elements -->
+    <div class="bubble bg-primary w-64 h-64 top-10 -left-20"></div>
+    <div class="bubble bg-secondary w-96 h-96 top-1/2 -right-32"></div>
+    <div class="bubble bg-cute-blue w-72 h-72 bottom-10 left-10"></div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 py-12 md:py-20 relative">
+        
+        <!-- Header / Banner Section -->
+        <header class="mb-16 text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold text-sm mb-6 animate-pulse">
+                🚴‍♂️ 冒險之旅 · 台灣四極點
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-black mb-8 leading-tight">
+                <span class="text-gradient">單車制霸地圖：</span><br>
+                <span class="text-slate-800">台灣四極點訓練計劃全攻略！</span>
+            </h1>
+            
+            <div class="rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 mb-8 transform hover:scale-[1.02] transition-transform duration-500">
+                <img src='https://opal.google/board/blobs/5df82087-e2ab-4d5f-a2af-68a5fd9887b6' alt='media_1' class="w-full object-cover h-[300px] md:h-[500px]" />
+            </div>
+
+            <p class="text-lg md:text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                這不是一場普通的環島，而是一場與台灣這座島嶼四個角落的熱血約會。
+            </p>
+        </header>
+
+        <!-- Intro Section -->
+        <section class="glass-card rounded-[2rem] p-8 md:p-12 mb-12 scrolled-reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center text-2xl">💡</div>
+                <h2 class="text-2xl font-bold text-slate-800">一、 騎單車不只是運動，是一場台灣地理的「集點遊戲」！</h2>
+            </div>
+            <p class="text-slate-700 mb-8 leading-loose">
+                對台灣單車手來說，地圖不只是二維的線條，而是由四個極端座標構成的冒險領地。這場「集點遊戲」的目標，是守護台灣本島四方的靈魂地標：
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white/50 p-6 rounded-2xl border-l-4 border-primary hover:shadow-lg transition-shadow">
+                    <span class="font-bold text-primary block mb-1">極北點</span>
+                    <span class="text-lg font-bold">富貴角燈塔</span>
+                    <p class="text-sm text-slate-500">新北市石門區</p>
+                </div>
+                <div class="bg-white/50 p-6 rounded-2xl border-l-4 border-secondary hover:shadow-lg transition-shadow">
+                    <span class="font-bold text-secondary block mb-1">極南點</span>
+                    <span class="text-lg font-bold">鵝鑾鼻燈塔</span>
+                    <p class="text-sm text-slate-500">屏東縣恆春鎮</p>
+                </div>
+                <div class="bg-white/50 p-6 rounded-2xl border-l-4 border-cute-blue hover:shadow-lg transition-shadow">
+                    <span class="font-bold text-cute-blue block mb-1">極東點</span>
+                    <span class="text-lg font-bold">三貂角燈塔</span>
+                    <p class="text-sm text-slate-500">新北市貢寮區</p>
+                </div>
+                <div class="bg-white/50 p-6 rounded-2xl border-l-4 border-accent hover:shadow-lg transition-shadow">
+                    <span class="font-bold text-accent block mb-1">極西點</span>
+                    <span class="text-lg font-bold">國聖燈塔</span>
+                    <p class="text-sm text-slate-500">台南市七股區</p>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-slate-700 italic border-t border-slate-200 pt-6">
+                為什麼騎士們對燈塔情有獨鍾？因為燈塔象徵著指引與歸宿，當你在長途跋涉後看見那座矗立在海岸線上的純白建築，那種「我到了」的儀式感是無法取代的。
+            </p>
+        </section>
+
+        <!-- Bento Grid for Trends -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <section class="md:col-span-2 glass-card rounded-[2rem] p-8 scrolled-reveal">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-2xl">🔥</span> 從車友敲碗到全民瘋雙塔
+                </h3>
+                <p class="text-slate-700 mb-4">
+                    在早期，造訪四極點只是單車社團內部盛傳的「私房挑戰」。2016 年迎來轉折點，柯文哲發起「一日雙塔」挑戰，將「挑戰極點」從同溫層推向了大眾視野。
+                </p>
+                <div class="p-4 bg-primary/5 rounded-xl border border-primary/10 text-primary font-medium italic">
+                    「這項挑戰具備了勳章與榮譽證書的儀式感，讓每位挑戰者都能擁有被認可的勇氣證明。」
+                </div>
+            </section>
+            
+            <div class="glass-card rounded-[2rem] p-8 flex flex-col items-center justify-center text-center scrolled-reveal bg-secondary text-white">
+                <div class="cycling-man mb-4">🚴</div>
+                <div class="text-4xl font-black mb-1">520</div>
+                <div class="text-sm opacity-80 uppercase tracking-widest">公里挑戰</div>
+                <div class="mt-4 text-sm font-medium">從富貴角到鵝鑾鼻</div>
+            </div>
+        </div>
+
+        <!-- Training Tips Section -->
+        <section class="glass-card rounded-[2rem] p-8 md:p-12 mb-12 scrolled-reveal">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-cute-blue flex items-center justify-center text-2xl">🧪</div>
+                <h2 class="text-2xl font-bold text-slate-800">三、 想要神隊友？學會「科學化修煉」！</h2>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="flex gap-6 group">
+                    <div class="text-3xl grayscale group-hover:grayscale-0 transition-all">🍑</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">屁股與座墊的親密接觸</h4>
+                        <p class="text-slate-600">強調 <strong>Zone 2（有氧基礎區）</strong> 的耐力培養。增加「座墊時間」（Saddle Time）才是王道，讓身體適應長時間震動。</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6 group">
+                    <div class="text-3xl grayscale group-hover:grayscale-0 transition-all">🌬️</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">跟風的力量</h4>
+                        <p class="text-slate-600">選擇 10 月至隔年 2 月出發，利用強勁的<span class="marker-highlight font-bold">東北季風</span>助陣，讓大自然成為你最忠實的助推器。</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 group">
+                    <div class="text-3xl grayscale group-hover:grayscale-0 transition-all">🍱</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">單車界的米其林</h4>
+                        <p class="text-slate-600">台灣便利商店是騎士生命線。每小時攝取 300 至 500 大卡熱量，防止進入低血糖的「撞牆期」。</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6 group">
+                    <div class="text-3xl grayscale group-hover:grayscale-0 transition-all">⚙️</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">裝備潮流</h4>
+                        <p class="text-slate-600">輕量化 Endurance 車架與電子變速系統已成為顯學，減少手指疲勞，專注於前方路況。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warning Section -->
+        <section class="bg-slate-900 rounded-[2rem] p-8 md:p-12 mb-12 text-slate-100 scrolled-reveal">
+            <h2 class="text-2xl font-bold mb-8 text-primary flex items-center gap-2">
+                ⚠️ 熱血之餘，別忘了「冷思考」
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <span class="text-accent font-bold block mb-2">01 交通安全</span>
+                    <p class="text-sm text-slate-400">台 2 線與國聖燈塔周邊常有砂石車，疲勞時反應變慢，威脅倍增。</p>
+                </div>
+                <div>
+                    <span class="text-accent font-bold block mb-2">02 健康風險</span>
+                    <p class="text-sm text-slate-400">注意水分補給，預防橫紋肌溶解症或心血管負荷，挑戰極限不應摧毀身體。</p>
+                </div>
+                <div>
+                    <span class="text-accent font-bold block mb-2">03 騎士格調</span>
+                    <p class="text-sm text-slate-400">不闖紅燈、不亂丟垃圾，內外兼具才是專業騎士的素養。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Section -->
+        <section class="mb-12 scrolled-reveal">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-display font-black text-slate-800">未來的四極點，人人都能當「大師」！</h2>
+                <div class="h-1 w-20 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl border-2 border-primary/10 hover:border-primary transition-colors">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h4 class="font-bold mb-2">電輔車降臨</h4>
+                    <p class="text-sm text-slate-500">體力不再是門檻，長途集點成為全家出動的「運動觀光」。</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-2 border-secondary/10 hover:border-secondary transition-colors">
+                    <div class="text-4xl mb-4">💎</div>
+                    <h4 class="font-bold mb-2">數位榮耀</h4>
+                    <p class="text-sm text-slate-500">證書可能演變為 NFT，透過 GPS 永恆記錄你的勇敢足跡。</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-2 border-accent/10 hover:border-accent transition-colors">
+                    <div class="text-4xl mb-4">☕</div>
+                    <h4 class="font-bold mb-2">慢下來的極點</h4>
+                    <p class="text-sm text-slate-500">轉向追求深度。結合地方美食，展開一場深刻的文化洗禮。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <footer class="text-center bg-white/40 p-12 rounded-[3rem] border border-white/60 mb-20">
+            <div class="inline-block mb-6 py-2 px-6 bg-primary text-white rounded-full font-bold shadow-lg shadow-primary/30">
+                結語：汗水與齒輪的刻度
+            </div>
+            <p class="text-xl text-slate-700 max-w-2xl mx-auto font-medium leading-relaxed">
+                四極點不只是一個地名，它是你重新認識台灣、重新認識自我的開始。<br>
+                <span class="text-gradient font-black text-2xl mt-4 block">準備好出發了嗎？台灣的四個角落，正靜候你的到來！</span>
+            </p>
+            <button class="mt-8 px-10 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-primary transition-all duration-300 transform hover:scale-105 shadow-xl">
+                開啟我的冒險計畫 🚲
+            </button>
+        </footer>
+
+    </main>
+
+    <script>
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scrolled-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
