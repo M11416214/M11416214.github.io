@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣單車四極點挑戰攻略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                            accent: '#ef4444',
+                            primary: '#3b82f6',
+                            secondary: '#10b981',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .bento-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-200 font-sans selection:bg-brand-accent/30">
+
+    <!-- Hero Section -->
+    <header class="relative min-h-[60vh] flex items-center justify-center overflow-hidden px-6 pt-20 pb-12">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-brand-dark to-brand-dark"></div>
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-primary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-accent/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-4xl">
+            <span class="inline-block py-1 px-4 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-sm font-semibold tracking-wider mb-6 animate-bounce">
+                2023-2026 趨勢版
+            </span>
+            <h1 class="text-5xl md:text-7xl font-display font-extrabold mb-6 gradient-text tracking-tight">
+                台灣單車四極點<br/><span class="text-white">極致挑戰攻略</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+                跨越 1,200 公里的壯麗旅程，從火山地景到熱帶海岸，探索台灣本島的地理極限。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 space-y-32 pb-32">
+
+        <!-- 置頂：資訊圖表 Section -->
+        <section id="infographic" class="relative group">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent to-slate-800"></div>
+                <h2 class="text-2xl font-display font-bold uppercase tracking-[0.2em] text-slate-500">Infographic</h2>
+                <div class="h-px flex-1 bg-gradient-to-l from-transparent to-slate-800"></div>
+            </div>
+
+            <div class="glass-card p-4 md:p-8 overflow-hidden transition-transform duration-500 hover:scale-[1.01]">
+                <div class="rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                    <img src='https://opal.google/board/blobs/75fac40e-6bdb-4dd9-a189-13cefb3a7adc' alt='台灣單車四極點挑戰資訊圖表' class="w-full h-auto" />
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div class="space-y-4">
+                        <h3 class="text-brand-primary font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-brand-primary"></span> 燈塔地標
+                        </h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            黑白八角的富貴角、純白西式的三貂角、光度最強的鵝鑾鼻以及隱蔽荒漠的國聖港，構成台灣地理的靈魂支柱。
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-brand-secondary font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-brand-secondary"></span> 推薦路線
+                        </h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            無論是尋求極限的 520km 雙塔，還是深入人文的 1200km 大環島，亦或是愜意的兩鐵慢旅，皆能領略寶島之美。
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-brand-accent font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-brand-accent"></span> 專業建議
+                        </h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            掌握 10月至翌年3月 的東北季風黃金期。特別注意西點積沙挑戰，建議使用寬胎或預載導航軌跡。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 置中：短影片 Section -->
+        <section id="video-showcase" class="relative">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent to-slate-800"></div>
+                <h2 class="text-2xl font-display font-bold uppercase tracking-[0.2em] text-slate-500">Video & Audio</h2>
+                <div class="h-px flex-1 bg-gradient-to-l from-transparent to-slate-800"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-10 items-center">
+                <div class="lg:col-span-3">
+                    <div class="relative glass-card p-4 group">
+                        <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
+                            <video src='https://opal.google/board/blobs/63d3d0f4-2c20-4252-a1ed-075c52134fb0' alt='挑戰短影片' class="w-full h-full object-cover" controls playsinline></video>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between px-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">地貌與光影的對話</h3>
+                                <p class="text-slate-500 text-sm italic">無人聲/純景觀影像紀實</p>
+                            </div>
+                            <div class="animate-pulse flex items-center gap-2 text-brand-primary">
+                                <span class="text-xs font-bold uppercase">Now Playing</span>
+                                <div class="w-1 h-4 bg-brand-primary rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="glass-card p-8">
+                        <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                            背景配樂建議
+                        </h4>
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                            <audio src='https://opal.google/board/blobs/5a5dfd79-71e0-4af2-9d8e-af176f65dd18' alt='背景音樂' class="w-full" controls></audio>
+                        </div>
+                        <p class="mt-4 text-sm text-slate-400 italic">
+                            精選節奏明快、充滿自由感的配樂，完美契合單車旅程中的壯麗風景。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 p-8 rounded-[24px] border border-white/10">
+                        <p class="text-sm font-medium leading-relaxed text-slate-300">
+                            「影片展現了從北至南及西部的不同地貌與燈塔景觀，展現了單車旅程的壯麗感。」
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 置底：報告內容 Section -->
+        <section id="report" class="relative">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent to-slate-800"></div>
+                <h2 class="text-2xl font-display font-bold uppercase tracking-[0.2em] text-slate-500">Detailed Report</h2>
+                <div class="h-px flex-1 bg-gradient-to-l from-transparent to-slate-800"></div>
+            </div>
+
+            <!-- Report Summary Chips -->
+            <div class="flex flex-wrap gap-4 mb-16">
+                <div class="px-6 py-4 glass-card flex-1 min-w-[280px]">
+                    <span class="text-brand-accent text-xs font-bold uppercase">核心目標</span>
+                    <p class="mt-2 text-sm">完成台灣本島地理極點的單車跨越 (北、東、南、西)。</p>
+                </div>
+                <div class="px-6 py-4 glass-card flex-1 min-w-[280px]">
+                    <span class="text-brand-primary text-xs font-bold uppercase">主流路線</span>
+                    <p class="mt-2 text-sm">1,200km 大環島、520km 雙塔挑戰、兩鐵慢旅。</p>
+                </div>
+                <div class="px-6 py-4 glass-card flex-1 min-w-[280px]">
+                    <span class="text-brand-secondary text-xs font-bold uppercase">關鍵挑戰</span>
+                    <p class="mt-2 text-sm">西點積沙、北海岸側風、東部砂石車及落山風。</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Main Content Column -->
+                <div class="lg:col-span-8 space-y-16">
+                    <!-- 四極點介紹 -->
+                    <div id="intro">
+                        <h3 class="text-3xl font-display font-bold mb-8 flex items-baseline gap-4">
+                            <span class="text-6xl text-slate-800 font-black">01</span>
+                            四極點介紹
+                        </h3>
+                        <div class="space-y-6 text-slate-400 leading-relaxed text-lg">
+                            <p>台灣本島的四極點挑戰是單車愛愛好者公認的殿堂級成就，其核心由四座各具地理意義的燈塔組成：</p>
+                            <div class="space-y-4">
+                                <div class="p-6 rounded-2xl bg-white/[0.02] border-l-4 border-brand-primary">
+                                    <strong class="text-white">極北點：富貴角燈塔 (Fuguei Cape)</strong>
+                                    <p class="text-base mt-2">新北市石門區。黑白相間八角形設計，因應秋冬濃霧而生。丘嶺起伏地形考驗腿力。</p>
+                                </div>
+                                <div class="p-6 rounded-2xl bg-white/[0.02] border-l-4 border-slate-300">
+                                    <strong class="text-white">極東點：三貂角燈塔 (Sandiaojiao)</strong>
+                                    <p class="text-base mt-2">新北市貢寮區。純白西式風格，「台灣眼睛」，太平洋航線的重要導航點。</p>
+                                </div>
+                                <div class="p-6 rounded-2xl bg-white/[0.02] border-l-4 border-brand-accent">
+                                    <strong class="text-white">極南點：鵝鑾鼻燈塔 (Eluanbi)</strong>
+                                    <p class="text-base mt-2">屏東縣恆春鎮。全台光度最強，罕見的「武裝燈塔」，俯瞰三大海域交會。</p>
+                                </div>
+                                <div class="p-6 rounded-2xl bg-white/[0.02] border-l-4 border-amber-500">
+                                    <strong class="text-white">極西點：國聖港燈塔 (Guosheng Port)</strong>
+                                    <p class="text-base mt-2">台南市七股區。簡易鐵塔構造，位於頂額沙洲，環境最嚴苛、最隱蔽的一站。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 路線規劃 -->
+                    <div id="route">
+                        <h3 class="text-3xl font-display font-bold mb-8 flex items-baseline gap-4">
+                            <span class="text-6xl text-slate-800 font-black">02</span>
+                            路線規劃建議
+                        </h3>
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="p-8 glass-card">
+                                <h4 class="text-brand-primary font-bold mb-3">大環島路線</h4>
+                                <p class="text-sm text-slate-400">1,000 - 1,200 km。逆時針或順時針完整串聯，深度體驗山海景致。</p>
+                            </div>
+                            <div class="p-8 glass-card">
+                                <h4 class="text-brand-accent font-bold mb-3">雙塔挑戰進階版</h4>
+                                <p class="text-sm text-slate-400">520 km。富貴角至鵝鑾鼻，冬季利用東北季風助陣的體能極限戰。</p>
+                            </div>
+                            <div class="p-8 glass-card sm:col-span-2">
+                                <h4 class="text-brand-secondary font-bold mb-3">極點慢旅</h4>
+                                <p class="text-sm text-slate-400">結合台鐵「兩鐵列車」，分拆四區塊分次達成，適合家庭與休閒騎行。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 風險應對 -->
+                    <div id="risks">
+                        <h3 class="text-3xl font-display font-bold mb-8 flex items-baseline gap-4">
+                            <span class="text-6xl text-slate-800 font-black">03</span>
+                            風險與應對
+                        </h3>
+                        <div class="space-y-8">
+                            <div class="group">
+                                <h4 class="text-xl font-bold mb-4 text-white flex items-center gap-2">
+                                    <span class="w-1.5 h-6 bg-brand-accent rounded-full"></span>
+                                    地形路況策略
+                                </h4>
+                                <ul class="list-disc list-inside text-slate-400 space-y-2 ml-4">
+                                    <li><span class="text-slate-200">國聖港積沙：</span> 建議使用 Gravel Bike，預載 GPX 軌跡防打滑與迷航。</li>
+                                    <li><span class="text-slate-200">大型車輛避讓：</span> 台 2 線砂石車多，需高亮度照明與安全車距。</li>
+                                </ul>
+                            </div>
+                            <div class="group">
+                                <h4 class="text-xl font-bold mb-4 text-white flex items-center gap-2">
+                                    <span class="w-1.5 h-6 bg-brand-primary rounded-full"></span>
+                                    季節氣候評估
+                                </h4>
+                                <ul class="list-disc list-inside text-slate-400 space-y-2 ml-4">
+                                    <li><span class="text-slate-200">黃金期 (10月-3月)：</span> 善用季風，但需備高品質防風排汗衣應對陰雨。</li>
+                                    <li><span class="text-slate-200">夏季 (6月-9月)：</span> 高溫與颱風風險，南下多逆風，防曬為首要任務。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 結論 -->
+                    <div id="conclusion" class="p-10 rounded-[32px] bg-gradient-to-br from-slate-900 to-black border border-white/10">
+                        <h3 class="text-2xl font-bold mb-6 text-white">簡要結論</h3>
+                        <p class="text-slate-400 leading-relaxed italic">
+                            「單車四極點挑戰不僅是體力的驗證，更是對台灣地理多樣性的深度探索。隨著政府優化『自行車友善環境』，此挑戰已轉向兼具運動與觀光的多元文化活動。」
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Sidebar / Reference Column -->
+                <aside class="lg:col-span-4 space-y-10">
+                    <div class="sticky top-10 space-y-10">
+                        <div class="glass-card p-8">
+                            <h4 class="text-lg font-bold mb-6 text-white">引用文獻來源</h4>
+                            <ul class="space-y-4 text-sm text-slate-500">
+                                <li class="pb-4 border-b border-white/5">1. 交通部觀光署 (2023)。《Light up Taiwan 極點慢旅官方指南》。</li>
+                                <li class="pb-4 border-b border-white/5">2. 中華民國自行車騎士協會 (2024)。《全台單車路線與施工更新》。</li>
+                                <li class="pb-4 border-b border-white/5">3. 《單車時代》(2023)。〈雙塔挑戰裝備評測〉。</li>
+                                <li>4. Strava & Velodash (2023-2024)。〈台灣環島熱點數據分析〉。</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="relative overflow-hidden rounded-3xl p-8 bg-brand-accent/10 border border-brand-accent/20">
+                            <div class="relative z-10">
+                                <p class="text-xs font-bold text-brand-accent uppercase mb-2">Notice</p>
+                                <p class="text-sm leading-relaxed text-slate-300">
+                                    M11416214 - 報告數據已根據最新交通建設進行年度優化。
+                                </p>
+                            </div>
+                            <div class="absolute -right-4 -bottom-4 text-brand-accent/10">
+                                <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- Center Footer -->
+    <footer class="w-full py-16 border-t border-white/10 flex flex-col items-center justify-center bg-black/50">
+        <div class="text-center">
+            <p class="text-slate-500 text-sm tracking-widest uppercase mb-4 font-display">Final Delivery</p>
+            <h2 class="text-xl font-medium text-slate-300">
+                【主題探索報告】by <span class="italic text-brand-accent font-bold">NTUST Connie</span>
+            </h2>
+            <div class="mt-4 flex gap-2 justify-center">
+                <div class="w-8 h-1 bg-brand-primary rounded-full"></div>
+                <div class="w-8 h-1 bg-brand-accent rounded-full"></div>
+                <div class="w-8 h-1 bg-brand-secondary rounded-full"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Animation for scroll reveal -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
