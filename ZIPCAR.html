@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zipcar 商業模式與獲利預估分析</title>
+    
+    <!-- 載入 Google 字型：Noto Sans TC (繁中) 與 Urbanist (英文數字) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Urbanist:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- 載入 FontAwesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. 全域樣式設定 (Global Styles)
+           ========================================================================== */
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            background-color: #1a1a1a; 
+            display: flex;
+            flex-direction: column;
+            gap: 40px; 
+            margin: 0; 
+            padding: 40px 0; 
+            align-items: center; 
+        }
+
+        /* 投影片主容器：設定 16:9 比例 (1280x720) */
+        .slide-container {
+            width: 1280px; 
+            height: 720px;
+            background-color: #0c0c0c; 
+            color: #f5f5f5;
+            font-family: 'Noto Sans TC', sans-serif;
+            position: relative; 
+            overflow: hidden;
+            display: flex; 
+            flex-direction: column;
+            padding: 60px; 
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Zipcar 品牌配色與變數 */
+        :root { 
+            --zip-green: #87B940; 
+            --zip-dark: #121212; 
+            --text-main: #f5f5f5;
+            --text-sub: #b0b0b0;
+            --accent-blue: #3182ce;
+        }
+
+        /* ==========================================================================
+           2. 字體與標題樣式 (Typography)
+           ========================================================================== */
+        h1, h2, h3, h4 { 
+            margin: 0; 
+            font-weight: 700; 
+        }
+        
+        h1 { 
+            font-size: 80px; 
+            color: var(--zip-green); 
+            line-height: 1.1; 
+            font-family: 'Urbanist', sans-serif;
+        }
+        
+        .slide-title { 
+            font-size: 44px; 
+            font-weight: 700; 
+            color: #fff; 
+            margin-bottom: 35px; 
+            border-left: 8px solid var(--zip-green); 
+            padding-left: 20px; 
+            text-align: left;
+            letter-spacing: 1px;
+        }
+        
+        p, li { 
+            font-size: 22px; 
+            line-height: 1.6; 
+            color: var(--text-sub); 
+        }
+        
+        strong { 
+            color: var(--zip-green); 
+        }
+
+        /* ==========================================================================
+           3. 佈局組件 (Layout Components)
+           ========================================================================== */
+        .content-area { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            width: 100%; 
+            z-index: 1;
+        }
+        
+        /* 雙欄版面 */
+        .two-column { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 50px; 
+            align-items: center; 
+            width: 100%; 
+        }
+
+        /* 抽象背景光暈裝飾 */
+        .bg-decor { 
+            position: absolute; 
+            top: -100px; 
+            right: -100px; 
+            width: 500px; 
+            height: 500px; 
+            background: radial-gradient(circle, rgba(135, 185, 64, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%; 
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           4. 商業模式畫布專用樣式 (Business Model Canvas Grid)
+           ========================================================================== */
+        .bmc-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 12px;
+            height: 440px;
+            width: 100%;
+        }
+        
+        .bmc-box { 
+            background: #161616; 
+            border: 1px solid #2d2d2d; 
+            padding: 16px; 
+            border-radius: 12px; 
+            transition: all 0.3s ease;
+        }
+        
+        .bmc-box:hover {
+            border-color: var(--zip-green);
+            background: #1a1a1a;
+        }
+        
+        .bmc-box h4 { 
+            margin: 0 0 12px 0; 
+            font-size: 18px; 
+            color: var(--zip-green); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        
+        .bmc-box ul { 
+            padding-left: 18px; 
+            margin: 0; 
+        }
+        
+        .bmc-box li { 
+            margin-bottom: 6px; 
+            font-size: 15px; 
+            line-height: 1.4;
+            color: #d1d5db;
+        }
+        
+        /* 底部成本與收入欄位 (橫跨 2.5 格) */
+        .bmc-footer { 
+            grid-column: span 2.5; 
+            background: #1c1c1c; 
+        }
+
+        /* ==========================================================================
+           5. 數據卡片與統計圖表樣式 (Data Cards & Charts)
+           ========================================================================== */
+        .highlight-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            text-align: center; 
+        }
+        
+        .stat-card { 
+            background: #161616; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+            border-top: 5px solid var(--zip-green); 
+        }
+        
+        .stat-value { 
+            font-size: 64px; 
+            font-weight: 700; 
+            color: var(--zip-green); 
+            font-family: 'Urbanist', sans-serif; 
+            line-height: 1.1;
+        }
+        
+        .stat-label { 
+            font-size: 22px; 
+            color: #e2e8f0; 
+            margin-top: 15px; 
+            font-weight: 500;
+        }
+
+        /* 網格卡片 */
+        .tiled-content { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            width: 100%; 
+        }
+        
+        .tile { 
+            background: #161616; 
+            padding: 35px; 
+            border-radius: 20px; 
+            border-bottom: 4px solid var(--zip-green); 
+            text-align: center; 
+        }
+        
+        .tile .icon { 
+            font-size: 44px; 
+            color: var(--zip-green); 
+            margin-bottom: 20px; 
+        }
+        
+        .tile h3 { 
+            font-size: 24px; 
+            margin-bottom: 15px; 
+            color: #fff; 
+        }
+        
+        .tile p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        /* 數據表格樣式 */
+        .table-layout table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px;
+        }
+        
+        .table-layout th { 
+            background: #111;
+            padding: 18px; 
+            text-align: left; 
+            border-bottom: 3px solid var(--zip-green); 
+            font-size: 22px;
+            color: var(--zip-green);
+        }
+        
+        .table-layout td { 
+            padding: 18px; 
+            border-bottom: 1px solid #2d2d2d; 
+            font-size: 20px; 
+            color: #e2e8f0;
+        }
+
+        /* 標題居中版面設定 */
+        .section-title-layout { 
+            text-align: center; 
+            width: 100%; 
+            align-items: center; 
+        }
+        
+        .section-title-layout hr { 
+            width: 100px; 
+            height: 6px; 
+            background: var(--zip-green); 
+            border: none; 
+            margin: 35px auto; 
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     SLIDE 1: 封面頁 (Title Slide)
+     可修改：主標題、副標題、簡報日期、演講者資訊
+     ========================================================================== -->
+<div class="slide-container" id="slide1">
+    <div class="bg-decor"></div>
+    <div class="content-area" style="text-align: center;">
+        <h1>ZIP<span style="color: #fff;">CAR</span></h1>
+        <h2 style="font-size: 42px; color: var(--zip-green); font-weight: 500; margin-top: 15px;">
+            商業模式畫布與獲利路徑預估
+        </h2>
+        <p style="margin-top: 45px; font-size: 24px; color: var(--text-sub); letter-spacing: 2px;">
+            基於 2000 年 10 月營運實況之深度剖析
+        </p>
+        <div style="width: 80px; height: 5px; background: var(--zip-green); margin: 30px auto;"></div>
+        <p style="font-size: 20px; color: #888;">報告人：Robin Chase, CEO</p>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     SLIDE 2: 商業模式畫布 (Business Model Canvas)
+     可修改：每個 Grid 方格中的 <li> 清單內容與 <h4> 的 Icon 樣式
+     ========================================================================== -->
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">Zipcar 商業模式畫布 (BMC)</h2>
+    <div class="content-area">
+        <div class="bmc-grid">
+            
+            <!-- 關鍵夥伴 (Key Partners) -->
+            <div class="bmc-box" style="grid-row: span 2;">
+                <h4><i class="fa-solid fa-handshake"></i> 關鍵夥伴</h4>
+                <ul>
+                    <li>汽車製造商 (福斯、福特)</li>
+                    <li>市政與私人停車場營運商</li>
+                    <li>無線網路及車載硬體工程師</li>
+                    <li>商業車險承保公司</li>
+                </ul>
+            </div>
+            
+            <!-- 關鍵活動 (Key Activities) -->
+            <div class="bmc-box">
+                <h4><i class="fa-solid fa-gears"></i> 關鍵活動</h4>
+                <ul>
+                    <li>無線感應平台研發與升級</li>
+                    <li>車隊日常營運、清潔與維護</li>
+                    <li>高密集精準站點選址談判</li>
+                    <li>會員資格徵信審查</li>
+                </ul>
+            </div>
+            
+            <!-- 價值主張 (Value Propositions) -->
+            <div class="bmc-box" style="grid-row: span 2;">
+                <h4><i class="fa-solid fa-star"></i> 價值主張</h4>
+                <ul>
+                    <li><strong>極致便利：</strong>轉角就能取車，免鑰匙一卡即解鎖</li>
+                    <li><strong>省錢經濟：</strong>相較高昂養車費，低里程者能省下大筆開銷</li>
+                    <li><strong>零負擔：</strong>費率包含油資、保險、稅金與停車費</li>
+                </ul>
+            </div>
+            
+            <!-- 客戶關係 (Customer Relationships) -->
+            <div class="bmc-box">
+                <h4><i class="fa-solid fa-heart"></i> 客戶關係</h4>
+                <ul>
+                    <li>高忠誠度會員制社群</li>
+                    <li>100% 自助化高效服務體驗</li>
+                    <li>「城市潮牌」形象與口碑推薦</li>
+                </ul>
+            </div>
+            
+            <!-- 客戶細分 (Customer Segments) -->
+            <div class="bmc-box" style="grid-row: span 2;">
+                <h4><i class="fa-solid fa-users"></i> 客戶細分</h4>
+                <ul>
+                    <li>高教育水準、中高收入之都市居民</li>
+                    <li>年行駛里程低於 6,000 英里的非通勤族</li>
+                    <li>無車位又不想負擔擁車成本的住戶</li>
+                </ul>
+            </div>
+            
+            <!-- 關鍵資源 (Key Resources) -->
+            <div class="bmc-box">
+                <h4><i class="fa-solid fa-car"></i> 關鍵資源</h4>
+                <ul>
+                    <li>車載「黑盒子」無線定位與感應核心技術</li>
+                    <li>預約排程平台專利軟體</li>
+                    <li>分佈在波士頓各核心熱點的實體車隊</li>
+                </ul>
+            </div>
+            
+            <!-- 通路渠道 (Channels) -->
+            <div class="bmc-box">
+                <h4><i class="fa-solid fa-route"></i> 通路渠道</h4>
+                <ul>
+                    <li>Zipcar 官方網站及電話熱線</li>
+                    <li>車身亮綠色商標的流動活廣告</li>
+                    <li>報章媒體與都市大眾公關宣傳</li>
+                </ul>
+            </div>
+            
+            <!-- 成本結構 (Cost Structure) -->
+            <div class="bmc-footer bmc-box">
+                <h4><i class="fa-solid fa-money-bill-wave"></i> 成本結構</h4>
+                <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <li>車輛購置/長期租賃費用</li>
+                    <li>核心熱點停車位租金 ($750/年)</li>
+                    <li>營運與總部管理固定成本</li>
+                    <li>無線技術升級及專利申請費</li>
+                </ul>
+            </div>
+            
+            <!-- 收入來源 (Revenue Streams) -->
+            <div class="bmc-footer bmc-box">
+                <h4><i class="fa-solid fa-coins"></i> 收入來源</h4>
+                <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <li>一次性入會手續費 ($25)</li>
+                    <li>高黏著經常性年度會費 ($75)</li>
+                    <li>按時/按日收取的使用費 ($5.5/時起)</li>
+                    <li>超額行駛里程費 ($0.4/英里)</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     SLIDE 3: 當前經營數據總覽 (2000年10月)
+     可修改：.stat-value 中的數字（如 239、19、$44,000）與底下備註文字
+     ========================================================================== -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">2000 年 10 月：營運實況統計</h2>
+    <div class="content-area">
+        <div class="highlight-grid">
+            
+            <!-- 數據卡片 1 -->
+            <div class="stat-card">
+                <div class="stat-value">239</div>
+                <div class="stat-label">已簽約付費會員數</div>
+            </div>
+            
+            <!-- 數據卡片 2 -->
+            <div class="stat-card">
+                <div class="stat-value">19</div>
+                <div class="stat-label">已部署營運車輛</div>
+            </div>
+            
+            <!-- 數據卡片 3 -->
+            <div class="stat-card">
+                <div class="stat-value">$44,000</div>
+                <div class="stat-label">每月固定行政開銷 (Overhead)</div>
+            </div>
+            
+        </div>
+        <p style="margin-top: 45px; font-size: 20px; color: #a0aec0; line-height: 1.8; text-align: center;">
+            * <strong>組織營運成本結構：</strong> 每月固定行政開銷中，包含波士頓地方營運費 $14,000 與企業總部行政管理費 $30,000。<br>
+            * <strong>目前的資源利用率：</strong> 每輛車平均服務 12.5 名會員，仍有極大的擴充與承載空間。
+        </p>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     SLIDE 4: 單車經濟模型 (Unit Economics)
+     可修改：表格中第二、三欄的各項財務數值
+     ========================================================================== -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">單車經濟模型：卓越的邊際利潤</h2>
+    <div class="content-area">
+        <div class="table-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">營運會計科目</th>
+                        <th style="width: 30%;">財務預估數據 (單車/月)</th>
+                        <th style="width: 40%;">計算公式與說明背景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>單車固定變動成本</strong></td>
+                        <td><strong>$727</strong></td>
+                        <td>含車輛租賃 ($320)、車位 ($125)、保險 ($150) 及油資與清潔等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>合理目標利用率</strong></td>
+                        <td><strong>40%</strong> (約 288 小時)</td>
+                        <td>在不犧牲客戶體驗 (不發生借不到車) 情況下的最佳供需平衡點</td>
+                    </tr>
+                    <tr>
+                        <td><strong>單車預期月營收</strong></td>
+                        <td><strong>$1,584</strong></td>
+                        <td>以平均時租 $5.5 元計算 (未加計里程費與年度會員費攤提)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>單車邊際淨貢獻</strong></td>
+                        <td><strong style="color: #fff; background-color: rgba(135,185,64,0.3); padding: 4px 10px; border-radius: 6px;">+$857</strong></td>
+                        <td>代表每多增加一輛車營運，每月能為公司額外賺取的毛利潤</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     SLIDE 5: 損益平衡分析 (Breakeven Analysis)
+     可修改：52 輛車、1,000 名會員、6-9 個月等預測數據
+     ========================================================================== -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">損益平衡與獲利時程預估</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <p style="font-size: 26px; color: #fff; margin-bottom: 25px;">
+                    若要全額覆蓋每月 <strong>$44,000</strong> 的組織固定開銷：
+                </p>
+                
+                <div style="background: #161616; padding: 35px; border-radius: 16px; border-left: 8px solid var(--zip-green);">
+                    <p style="font-size: 32px; color: #fff; margin: 0; font-weight: 700;">
+                        關鍵規模：<strong>52 輛營運車輛</strong>
+                    </p>
+                    <p style="font-size: 22px; color: var(--zip-green); margin-top: 10px; font-weight: 500;">
+                        需達到約 <strong>950 - 1,000 名</strong> 付費會員
+                    </p>
+                </div>
+                
+                <p style="margin-top: 30px; font-size: 18px; color: #a0aec0;">
+                    目前的 239 名會員僅能覆蓋約 1/4 的行政支出。隨著車隊從 19 輛跨越到 52 輛的「損益平衡拐點」，強大的<strong>地方網絡效應</strong>將開始發揮威力。
+                </p>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="stat-card" style="border-top: 5px solid var(--accent-blue); background: #161616;">
+                    <div class="stat-value" style="color: var(--accent-blue);">6 - 9 個月</div>
+                    <div class="stat-label">預估達到單月損益平衡所需時間</div>
+                    <p style="font-size: 16px; color: #718096; margin-top: 15px; line-height: 1.5;">
+                        (假設維持目前九月每週穩定新增約 25 名、單月淨增 100 名新會員之高成長速度)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     SLIDE 6: 關鍵路徑 (Key Path to Profitability)
+     可修改：三個卡片中的標題、Icon 與詳細描述
+     ========================================================================== -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">邁向獲利：三大核心營運策略</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            
+            <!-- 策略 1 -->
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>1. 極大化時間利用率</h3>
+                <p>運用動態定價或非尖峰時段優惠，引導日常商務、家庭休閒與週末採購需求，將利用率提升至 40%。</p>
+            </div>
+            
+            <!-- 策略 2 -->
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-microchip"></i></div>
+                <h3>2. 降低無形營運成本</h3>
+                <p>加速專利車載物聯網黑盒子研發，透過無線化感應取車、自動記里程計費，大幅降低行政與管理人工成本。</p>
+            </div>
+            
+            <!-- 策略 3 -->
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h3>3. 建立高密度站點網</h3>
+                <p>集中火力增設波士頓核心站點，將「會員與車輛的步行距離」縮短至 5 分鐘內，極大化會員續訂黏著度。</p>
+            </div>
+            
+        </div>
+        
+        <!-- 底部重點強調 -->
+        <div style="margin-top: 40px; background: rgba(135,185,64,0.1); padding: 25px; border-radius: 12px; border: 1px solid var(--zip-green);">
+            <p style="margin: 0; color: #fff; font-size: 18px; text-align: center;">
+                <strong>核心洞察：</strong> Zipcar 的成功關鍵不在於無止境地買車，而在於維持「<strong>高單車/會員比</strong>」並善用「<strong>無線技術</strong>」壓低邊際擴張成本。
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     SLIDE 7: 結論頁 (Closing Slide)
+     可修改：結論金句、下方版權與背景宣告資訊
+     ========================================================================== -->
+<div class="slide-container" id="slide7" style="background: linear-gradient(135deg, #0c0c0c 0%, #161d10 100%);">
+    <div class="content-area" style="text-align: center;">
+        <h2 style="font-size: 64px; color: var(--zip-green); margin-bottom: 30px;">改變城市移動的經濟格局</h2>
+        <p style="font-size: 28px; color: #fff; max-width: 900px; margin: 0 auto; line-height: 1.6; font-weight: 500;">
+            「當我們在波士頓成功布建 50 輛車、收穫 1,000 名高黏著會員時，我們向市場證明的將是一個可無限複製、具百萬級規模的高獲利商機。」
+        </p>
+        
+        <div style="margin-top: 90px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: inline-block; width: 60%;">
+            <p style="font-size: 20px; color: #fff; margin: 0; font-family: 'Urbanist', sans-serif; font-weight: 700; letter-spacing: 2px;">
+                ZIPCAR: REFINING THE BUSINESS MODEL
+            </p>
+            <p style="font-size: 16px; color: #666; margin-top: 8px; letter-spacing: 1px;">
+                Harvard Business School Case Study Analysis & Presentation
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
